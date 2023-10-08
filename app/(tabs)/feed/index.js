@@ -15,7 +15,7 @@ export default function Feed() {
           headerShown: true,
           headerStyle: { backgroundColor: COLORS.bgSecondary },
           headerTitleStyle: { color: COLORS.white },
-          title: "Feed",
+          title: "Qadam",
         }}
       />
       <View style={styles.container}>
