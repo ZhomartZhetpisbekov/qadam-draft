@@ -1,28 +1,14 @@
-import { useState } from "react";
-import { Stack } from "expo-router";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { useState } from 'react';
+import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-import styles from "../../../styles/main";
 import { handleSignup } from "../../../auth/auth_signup_password";
 
-export default function Profile() {
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   return (
-    <>
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          title: "Profile",
-        }}
-      />
-      <View style={styles.container}>
-        <Text>Profile</Text>
-        <StatusBar style="light" />
-        <TextInput
-          
+    <View style={styles.container}>
+      <TextInput
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
@@ -36,7 +22,14 @@ export default function Profile() {
         <TouchableOpacity onPress={() => handleSignup(email, password)}>
           <Text>Sign Up</Text>
         </TouchableOpacity>
-      </View>
-    </>
-  );
+    </View>
+  )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
