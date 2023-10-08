@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { COLORS, icons, images } from "../../../constants";
+import { COLORS } from "../../../constants";
 import styles from "./post-header.style";
 
 const PostHeader = ({ post }) => {
