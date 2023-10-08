@@ -1,21 +1,22 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { useRouter } from "expo-router";
 
-export const handleSignup = (email, password) => {
-  //   const auth = getAuth();
+export const handleSignUp = (email, password) => {
+  const router = useRouter();
+
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      console.log(email, password);
       // Signed up
       const user = userCredential.user;
-      console.log(user);
+      console.log("Account created! ", user.email);
+      router.replace("/");
       // ...
     })
     .catch((error) => {
-      console.log(email, password);
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage, "SALAM");
+      console.log(errorCode, errorMessage);
       // ..
     });
 };

@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Stack } from "expo-router";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import styles from "../../../styles/main";
-import { handleSignup } from "../../../auth/auth_signup_password";
+import { useAuth } from "../../../hooks/useAuth";
+import { COLORS } from "../../../constants";
 
 export default function Profile() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { user } = useAuth();
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    setCurrentUser(user);
+  }, [user]);
 
   return (
     <>
@@ -19,23 +24,8 @@ export default function Profile() {
         }}
       />
       <View style={styles.container}>
-        <Text>Profile</Text>
+        <Text style={{ color: COLORS.white }}>{currentUser?.email}</Text>
         <StatusBar style="light" />
-        <TextInput
-          
-          placeholder="Email"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry
-        />
-        <TouchableOpacity onPress={() => handleSignup(email, password)}>
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
       </View>
     </>
   );
