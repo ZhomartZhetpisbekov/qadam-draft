@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Stack } from "expo-router";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import styles from "../../../styles/main";
@@ -25,6 +25,15 @@ export default function Profile() {
       />
       <View style={styles.container}>
         <Text style={{ color: COLORS.white }}>{currentUser?.email}</Text>
+        <TouchableOpacity
+          style={{
+            padding: 15,
+            backgroundColor: COLORS.orange,
+            borderRadius: 8,
+          }}
+        >
+          <Text style={{ color: COLORS.white }}>Sign Out</Text>
+        </TouchableOpacity>
         <StatusBar style="light" />
       </View>
     </>
