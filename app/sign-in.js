@@ -1,5 +1,5 @@
-import SignInPage from "../components/login/sign-in/SignInPage";
+import SignInScreen from "../screens/auth/sign-in/SignInScreen";
 
 export default function SignIn() {
-  return <SignInPage />;
+  return <SignInScreen />;
 }

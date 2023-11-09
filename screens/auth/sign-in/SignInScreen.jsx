@@ -6,7 +6,7 @@ import { handleSignIn } from "../../../auth/auth_signin_password";
 import styles from "./sign-in.style";
 import { COLORS } from "../../../constants";
 
-const SignInPage = () => {
+const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -50,4 +50,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignInScreen;

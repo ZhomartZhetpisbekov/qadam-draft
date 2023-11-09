@@ -1,9 +1,9 @@
 import { ScrollView } from "react-native";
 
-import FeedPost from "../feed-post/FeedPost";
-import posts from "../../../constants/posts";
+import FeedPost from "../../components/posts/feed-post/FeedPost";
+import posts from "../../constants/posts";
 
-const PostsList = () => {
+const FeedScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%" }}>
       {posts.map((item) => (
@@ -13,4 +13,4 @@ const PostsList = () => {
   );
 };
 
-export default PostsList;
+export default FeedScreen;

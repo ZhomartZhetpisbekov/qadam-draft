@@ -7,12 +7,7 @@ import styles from "../../../styles/main";
 export default function Search() {
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          title: "Search",
-        }}
-      />
+      <Stack.Screen />
       <View style={styles.container}>
         <Text>Search</Text>
         <StatusBar style="light" />

@@ -1,20 +1,17 @@
 import { Stack } from "expo-router";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import styles from "../../../styles/main";
+import CreateScreen from "../../../screens/create-screen/CreateScreen";
 
 export default function Create() {
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          title: "Create",
-        }}
-      />
+      <Stack.Screen/>
+      
       <View style={styles.container}>
-        <Text>Create</Text>
+        <CreateScreen />
         <StatusBar style="light" />
       </View>
     </>

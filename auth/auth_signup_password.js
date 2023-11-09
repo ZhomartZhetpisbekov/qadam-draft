@@ -1,22 +1,35 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { auth, db, storage } from "../firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "expo-router";
 
-export const handleSignUp = (email, password) => {
-  const router = useRouter();
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+export const signUpUser = async (email, password, username, firstName, lastName, imageUri) => {
+    console.log('Image uri: ', imageUri)
+    return createUserWithEmailAndPassword(auth, email, password).then(async userCredential => {
       // Signed up
-      const user = userCredential.user;
-      console.log("Account created! ", user.email);
-      router.replace("/");
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      // ..
-    });
+      const uid = userCredential.user.uid;
+      let photoURL = '';
+  
+      if (imageUri) {
+        const response = await fetch(imageUri);
+        const blob = await response.blob();
+        const storageRef = ref(storage, `user_profile_photos/${uid}`);
+        uploadBytes(storageRef, blob).then((snapshot) => {
+          console.log('Uploaded a blob or file!');
+        });
+        photoURL = storageRef.fullPath
+      }
+  
+      await setDoc(doc(db, "users", uid), {
+        username,
+        email,
+        firstName,
+        lastName,
+        photoURL,
+      });
+      return {success: true};
+    }).catch(error => {
+      return { success: false, error: error.message };
+    }); 
 };

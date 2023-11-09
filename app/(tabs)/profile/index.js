@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import styles from "../../../styles/main";
 import { useAuth } from "../../../hooks/useAuth";
 import { COLORS } from "../../../constants";
+import ProfileScreen from "../../../screens/profile-screen/ProfileScreen";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -17,25 +18,11 @@ export default function Profile() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          title: "Profile",
-        }}
-      />
-      <View style={styles.container}>
-        <Text style={{ color: COLORS.white }}>{currentUser?.email}</Text>
-        <TouchableOpacity
-          style={{
-            padding: 15,
-            backgroundColor: COLORS.orange,
-            borderRadius: 8,
-          }}
-        >
-          <Text style={{ color: COLORS.white }}>Sign Out</Text>
-        </TouchableOpacity>
+      <Stack.Screen />
+      {/* <View style={styles.container}> */}
+        <ProfileScreen user={currentUser}/>
         <StatusBar style="light" />
-      </View>
+      {/* </View> */}
     </>
   );
 }

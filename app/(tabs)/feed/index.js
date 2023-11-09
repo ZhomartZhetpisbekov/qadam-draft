@@ -1,25 +1,16 @@
 import { Stack } from "expo-router";
-import { View, Text } from "react-native";
-import { StatusBar } from "expo-status-bar";
-
+import { View, StatusBar } from "react-native";
 import styles from "../../../styles/main";
 import { COLORS } from "../../../constants";
 
-import PostsList from "../../../components/posts/posts-list/PostsList";
+import FeedScreen from "../../../screens/feed-screen/FeedScreen";
 
 export default function Feed() {
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          headerStyle: { backgroundColor: COLORS.bgSecondary },
-          headerTitleStyle: { color: COLORS.white },
-          title: "Qadam",
-        }}
-      />
+      <Stack.Screen />
       <View style={styles.container}>
-        <PostsList />
+        <FeedScreen />
         <StatusBar style="light" />
       </View>
     </>
