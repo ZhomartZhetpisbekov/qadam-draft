@@ -1,15 +1,14 @@
 import { Stack } from "expo-router";
-import { View, Text,StatusBar } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import styles from "../../../styles/main";
+import CreatePostScreen from "../../../screens/create-screen/create-post/CreatePostScreen";
 
 export default function CreatePost() {
   return (
-		<>
-			<Stack.Screen />
-			<View style={styles.container}>
-				<Text>Post</Text>
-				<StatusBar style="light" />
-			</View>
-		</>
-	)
+    <>
+      <Stack.Screen />
+      <CreatePostScreen />
+      <StatusBar style="light" />
+    </>
+  );
 }

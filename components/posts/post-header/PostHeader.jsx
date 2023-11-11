@@ -8,7 +8,7 @@ const PostHeader = ({ post }) => {
       <View style={styles.postInfo}>
         <TouchableOpacity style={styles.profilePicBox}>
           <Image
-            source={post.profilePic}
+            source={{uri: post.profilePic}}
             style={styles.profilePic}
             resizeMode="contain"
           />
