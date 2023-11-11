@@ -5,10 +5,12 @@ import { useRouter } from "expo-router";
 import { handleSignIn } from "../../../auth/auth_signin_password";
 import styles from "./sign-in.style";
 import { COLORS } from "../../../constants";
+import { useSession } from "../../../hooks/useSession";
 
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {signIn} = useSession()
 
   const router = useRouter();
 
@@ -32,7 +34,7 @@ const SignInScreen = () => {
       />
       <TouchableOpacity
         onPress={() => {
-          handleSignIn(email, password);
+          signIn(email, password);
         }}
         style={styles.signInBtn}
       >

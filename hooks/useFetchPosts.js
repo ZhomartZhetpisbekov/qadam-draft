@@ -32,7 +32,6 @@ const useFetchPosts = () => {
 
           const post = {
             id: change.doc.id,
-						// profilePic: images.karishev,
             profilePic: userProfilePic ? userProfilePic : placeholderImg,
             profileName: userSnap.exists() ? userSnap.data().username : "",
             date: postData.createdAt.toDate().toLocaleDateString(),

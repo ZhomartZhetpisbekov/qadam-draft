@@ -1,8 +1,15 @@
-import { useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
+
+// Create the context
+const AuthContext = createContext();
 
 export function useAuth() {
+  return useContext(AuthContext);
+}
+
+export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
@@ -10,19 +17,19 @@ export function useAuth() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.email);
         setUser(user);
         setIsAuthenticated(true);
       } else {
-        console.log("not authenticated");
+        setUser(null);
         setIsAuthenticated(false);
       }
       if (initializing) setInitializing(false);
     });
 
-    // Cleanup the listener on unmount
     return () => unsubscribe();
   }, [initializing]);
 
-  return { isAuthenticated, initializing, user };
+  const value = { isAuthenticated, initializing, user };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

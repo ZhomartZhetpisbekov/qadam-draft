@@ -1,15 +1,17 @@
 import { Redirect } from "expo-router";
 import { useAuth } from "../hooks/useAuth";
 import { ActivityIndicator } from "react-native";
+import { useSession } from "../hooks/useSession";
 
 export default function App() {
-  const { isAuthenticated, initializing } = useAuth();
+  const {session, isLoading} = useSession()
+  console.log(session, isLoading);
 
-  if (initializing) {
+  if (isLoading) {
     return <ActivityIndicator />; // Or a loading spinner
   }
 
-  return isAuthenticated ? (
+  return session ? (
     <Redirect href={"/(tabs)/feed"} />
   ) : (
     <Redirect href={"/sign-in"} />

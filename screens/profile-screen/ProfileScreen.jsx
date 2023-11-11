@@ -7,12 +7,14 @@ import { doc, getDoc } from "firebase/firestore";
 import styles from "./profile-screen.style";
 import getDownloadURI from "../../utils/getDownloadURI";
 import { useRouter } from "expo-router";
+import { useSession } from "../../hooks/useSession";
 
 const ProfileScreen = ({ user }) => {
   const [userData, setUserData] = useState(null);
   const [profileImg, setProfileImg] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
   );
+  const {signOut} = useSession()
   const placeholderImage = require("../../assets/images/profile-img-placeholder.png"); // Update with the correct path
 
 	const router = useRouter()
@@ -48,8 +50,7 @@ const ProfileScreen = ({ user }) => {
   }, [userData]);
 
 	const handleSignOut = async () => {
-		await signOut(auth);
-		router.replace('/')
+		await signOut()
 	}
 
   if (!userData) {
